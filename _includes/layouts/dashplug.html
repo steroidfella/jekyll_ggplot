@@ -1,0 +1,21 @@
+{% if page.language == "python" or page.language == "r" or page.language == "ggplot2" %}
+<div class="dash-plug">
+  <p>Write, deploy, & scale Dash apps and {{ page.language | capitalize }} data visualization on a Kubernetes Dash Enterprise cluster.
+    <br>
+    <a href="https://plotly.com/get-pricing/" class="plotly-red">Get Pricing</a>
+    &nbsp;|&nbsp;
+    <a href="https://plotly.com/get-demo/" class="plotly-red">Demo Dash Enterprise</a>
+    &nbsp;|&nbsp;
+    <a href="https://plotly.com/dash/" class="plotly-red">Dash Enterprise Overview</a>
+  </p>
+</div>
+{% endif %}
+
+{% if page.language == "javascript" or page.language == "plotly_js" %}
+<div class="dash-plug">
+    <p>Building full-stack apps and dashboards with Plotly.js? 
+      <br>
+      Increase development speed by 2x-10x with <a href="https://plotly.com/dash">Dash</a>. 🏃
+  </p>
+</div>
+{% endif %}
