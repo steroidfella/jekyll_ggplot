@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name=”description” content=”">
+    <title>ggplot</title>
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+          crossorigin="anonymous">
+    </script>
+    <style>
+      .mcode { border: 1px solid #cfcfcf; border-radius: 2px; background: #f7f7f7; padding: 10px; }
+    </style>
+  </head>
+  <body>                                                           
+    <div class="container" style="position:relative;">
+      <h1>GGPLOT - <code>ggplot</code></h1>
+      <section>
+        <p>Construct ggplots and then convert them with ggplotly</p>
+
+<pre class="mcode">
+df &lt;- data.frame(
+  gp = factor(rep(letters[1:3], each = 10)),
+  y = rnorm(30)
+)
+ds &lt;- do.call(rbind, lapply(split(df, df$gp), function(d) {
+  data.frame(mean = mean(d$y), sd = sd(d$y), gp = d$gp)
+}))
+p &lt;-    
+ ggplot(df, aes(gp, y)) +
+  geom_point() +
+  geom_point(data = ds, aes(y = mean), colour = 'red', size = 3)
+</pre>
+
+<pre class="mcode">
+plotly::ggplotly(p)
+</pre>
+
+<iframe scrolling="no" margin="none" padding="none" seamless="seamless" height="650" frameborder="0" style="border:0" src="https://plotly.com/~nadhil/1.embed" width="800">
+</iframe>
+
+<pre class="mcode">
+df &lt;- data.frame(
+  gp = factor(rep(letters[1:3], each = 10)),
+  y = rnorm(30)
+)
+ds &lt;- do.call(rbind, lapply(split(df, df$gp), function(d) {
+  data.frame(mean = mean(d$y), sd = sd(d$y), gp = d$gp)
+}))
+p &lt;-    
+ ggplot(df) +
+  geom_point(aes(gp, y)) +
+  geom_point(data = ds, aes(gp, mean), colour = 'red', size = 3)
+</pre>
+
+<pre class="mcode">
+plotly::ggplotly(p)
+</pre>
+
+<iframe scrolling="no" margin="none" padding="none" seamless="seamless" height="650" frameborder="0" style="border:0" src="https://plotly.com/~nadhil/3.embed" width="800">
+</iframe>
+
+<pre class="mcode">
+df &lt;- data.frame(
+  gp = factor(rep(letters[1:3], each = 10)),
+  y = rnorm(30)
+)
+ds &lt;- do.call(rbind, lapply(split(df, df$gp), function(d) {
+  data.frame(mean = mean(d$y), sd = sd(d$y), gp = d$gp)
+}))
+p &lt;-    
+ ggplot() +
+  geom_point(data = df, aes(gp, y)) +
+  geom_point(data = ds, aes(gp, mean), colour = 'red', size = 3) +
+  geom_errorbar(
+    data = ds,
+    aes(gp, mean, ymin = mean - sd, ymax = mean + sd),
+    colour = 'red',
+    width = 0.4
+  )
+</pre>
+
+<pre class="mcode">
+plotly::ggplotly(p)
+</pre>
+
+<iframe scrolling="no" margin="none" padding="none" seamless="seamless" height="650" frameborder="0" style="border:0" src="https://plotly.com/~nadhil/5.embed" width="800">
+</iframe>
+
+      </section>
+      <footer>
+        MATLAB® is a registered trademark of The MathWorks, Inc. Source material for this webpage is periodically updated from https://ggplot2.tidyverse.org/reference/.
+      </footer>
+    </div>  
+  </body>
+</html>
